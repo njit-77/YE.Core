@@ -8,12 +8,13 @@
 	<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
 	<AssemblyTitle>YE.Core</AssemblyTitle>
-	<VersionPrefix>1.0</VersionPrefix>
+	<VersionPrefix>0.1</VersionPrefix>
 	<VersionSuffix>$([System.DateTime]::Now.ToString(`yyyy.MMdd`))</VersionSuffix>
 	<Version>$(VersionPrefix).$(VersionSuffix)</Version>
 	<FileVersion>$(Version)</FileVersion>
 	<AssemblyVersion>$(Version)</AssemblyVersion>
 	<Copyright>Copyright © 2020-$([System.DateTime]::Now.ToString(`yyyy`)) njit-77. All rights reserved.</Copyright>
+	<OutputPath>..\bin</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
