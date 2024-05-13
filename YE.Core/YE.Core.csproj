@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net45;net462;netstandard2.0;netstandard2.1;net5.0;net5.0-windows;net6.0;net6.0-windows;net7.0;net7.0-windows;net8.0;net8.0-windows;</TargetFrameworks>
+	<LangVersion>latest</LangVersion>
+    <Company>YE</Company>
+    <Authors>$(Company)</Authors>
+	<PackageLicenseFile>LICENSE</PackageLicenseFile>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
+	<AssemblyTitle>YE.Core</AssemblyTitle>
+	<VersionPrefix>1.0</VersionPrefix>
+	<VersionSuffix>$([System.DateTime]::Now.ToString(`yyyy.MMdd`))</VersionSuffix>
+	<Version>$(VersionPrefix).$(VersionSuffix)</Version>
+	<FileVersion>$(Version)</FileVersion>
+	<AssemblyVersion>$(Version)</AssemblyVersion>
+	<Copyright>Copyright © 2020-$([System.DateTime]::Now.ToString(`yyyy`)) njit-77. All rights reserved.</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+</Project>
