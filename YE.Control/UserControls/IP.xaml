@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="YE.Control.UserControls.IP"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:YE.Control.UserControls"
+             xmlns:conv="clr-namespace:ValueConverters;assembly=ValueConverters"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             Width="500"
+             Height="100"
+             Background="White"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <conv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+
+        <Style TargetType="TextBox">
+            <Setter Property="MaxLength" Value="3" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Margin" Value="1" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <TextBox GotFocus="TextBoxGotFocus" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:IP}, Path=FirstIPValue, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Grid.Column="2" GotFocus="TextBoxGotFocus" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:IP}, Path=SecondIPValue, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Grid.Column="4" GotFocus="TextBoxGotFocus" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:IP}, Path=ThirdIPValue, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Grid.Column="6" GotFocus="TextBoxGotFocus" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:IP}, Path=ForthIPValue, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Grid.Column="8" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:IP}, Path=IPPort}" Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:IP}}, Path=HasPort, Converter={StaticResource BoolToVisibilityConverter}}" />
+        <TextBox Grid.Column="1" Text="." />
+        <TextBox Grid.Column="3" Text="." />
+        <TextBox Grid.Column="5" Text="." />
+        <TextBox Grid.Column="7" Text=":" Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:IP}}, Path=HasPort, Converter={StaticResource BoolToVisibilityConverter}}" />
+    </Grid>
+</UserControl>
