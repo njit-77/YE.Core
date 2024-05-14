@@ -23,6 +23,18 @@ namespace YE.Core.Utility
         /// <summary>
         /// 写入数据
         /// </summary>
+        /// <example>
+        /// <code lang="cs">
+        /// <![CDATA[
+        /// string file_path = "./test.ini";
+        /// IniHelper.WriteValue("BOOL", "test_1", false, file_path);
+        /// IniHelper.WriteValue("INT", "test_3", int.MinValue, file_path);
+        /// IniHelper.WriteValue("FLOAT", "test_6", -1234.567, file_path);
+        /// IniHelper.WriteValue("DOUBLE", "test_9", -123456789.987654, file_path);
+        /// IniHelper.WriteValue("STRING", "test_14", "안녕하세요", file_path);
+        /// ]]>
+        /// </code>
+        /// </example>
         /// <typeparam name="T">类型</typeparam>
         /// <param name="section">节</param>
         /// <param name="key">键</param>
@@ -37,6 +49,18 @@ namespace YE.Core.Utility
         /// <summary>
         /// 读取数据
         /// </summary>
+        /// <example>
+        /// <code lang="cs">
+        /// <![CDATA[
+        /// string file_path = "./test.ini";
+        /// bool test_1 = IniHelper.ReadValue<bool>("BOOL", "test_1", file_path);
+        /// int test_3 = IniHelper.ReadValue<int>("INT", "test_3", file_path)
+        /// float test_6 = IniHelper.ReadValue<float>("FLOAT", "test_6", file_path);
+        /// double test_9 = IniHelper.ReadValue<double>("DOUBLE", "test_9", file_path);
+        /// string test_14 = IniHelper.ReadValue<string>("STRING", "test_14", file_path);
+        /// ]]>
+        /// </code>
+        /// </example>
         /// <typeparam name="T">类型</typeparam>
         /// <param name="section">节</param>
         /// <param name="key">键</param>
