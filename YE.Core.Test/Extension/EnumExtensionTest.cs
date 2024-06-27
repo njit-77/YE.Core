@@ -8,12 +8,12 @@ namespace YE.Core.Test.Extension
         [Fact]
         public void Test1()
         {
-            Assert.Equal("All", LogLevel.All.GetDescriptionByEnum());
-            Assert.Equal("Debug", LogLevel.Debug.GetDescriptionByEnum());
-            Assert.Equal("Info", LogLevel.Info.GetDescriptionByEnum());
-            Assert.Equal("Warning", LogLevel.Warning.GetDescriptionByEnum());
-            Assert.Equal("Error", LogLevel.Error.GetDescriptionByEnum());
-            Assert.Equal("Fatal", LogLevel.Fatal.GetDescriptionByEnum());
+            Assert.Equal("All", LogLevel.All.GetDescription());
+            Assert.Equal("Debug", LogLevel.Debug.GetDescription());
+            Assert.Equal("Info", LogLevel.Info.GetDescription());
+            Assert.Equal("Warn", LogLevel.Warning.GetDescription());
+            Assert.Equal("Error", LogLevel.Error.GetDescription());
+            Assert.Equal("Fatal", LogLevel.Fatal.GetDescription());
         }
 
         public enum LogLevel : byte
@@ -31,7 +31,7 @@ namespace YE.Core.Test.Extension
             Info = 2,
 
             /// <summary>警告</summary>
-            [Description("Warning")]
+            [Description("Warn")]
             Warning = 3,
 
             /// <summary>错误</summary>

@@ -1,20 +1,28 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Reflection;
 
 namespace YE.Core.Extension
 {
     public static class EnumExtension
     {
-        public static string GetDescriptionByEnum<T>(this T value) where T : Enum
+        /// <summary>
+        /// 获取Enum类型的Description信息
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static string GetDescription(this Enum value)
         {
             string result = value.ToString();
 
-            var fi = typeof(T).GetField(result);
+            var field = value.GetType().GetField(result);
 
-            var attributes = (string[])fi.GetCustomAttributes(typeof(string), true);
+            var attribute = field.GetCustomAttribute<DescriptionAttribute>();
 
-            if (attributes != null && attributes.Length > 0)
+            if (attribute != null)
             {
-                return attributes[0];
+                return attribute.Description;
             }
             return result;
         }
