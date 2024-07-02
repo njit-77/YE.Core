@@ -10,7 +10,7 @@ namespace YE.Core.Test.Extension
         {
             Assert.Equal("All", LogLevel.All.GetDescription());
             Assert.Equal("Debug", LogLevel.Debug.GetDescription());
-            Assert.Equal("Info", LogLevel.Info.GetDescription());
+            Assert.Equal("Information", LogLevel.Info.GetDescription());
             Assert.Equal("Warn", LogLevel.Warning.GetDescription());
             Assert.Equal("Error", LogLevel.Error.GetDescription());
             Assert.Equal("Fatal", LogLevel.Fatal.GetDescription());
@@ -27,7 +27,7 @@ namespace YE.Core.Test.Extension
             Debug = 1,
 
             /// <summary>普通</summary>
-            [Description("Info")]
+            [Description("Information")]
             Info = 2,
 
             /// <summary>警告</summary>

@@ -29,22 +29,22 @@ namespace YE.Core.Algorithms
         /// </code>
         /// </example>
         /// <param name="data">数据</param>
-        /// <param name="Poly">多项式</param>
+        /// <param name="ploy">多项式</param>
         /// <param name="isReverse">true:逆序 低位在左，高位在右，false:正序 高位在左，低位在右</param>
         /// <returns>CRC结果</returns>
-        public static UInt16 GetCrc16(byte[] data, UInt16 Poly, bool isReverse)
+        public static UInt16 GetCrc16(byte[] data, UInt16 ploy, bool isReverse)
         {
             UInt16 crc = 0xFFFF;
             if (isReverse)
             {
                 /// 逆序多项式
-                BitVector32 bits = new BitVector32((Int32)Poly);
+                BitVector32 bits = new BitVector32((Int32)ploy);
                 BitVector32 reverse_bits = new BitVector32();
                 for (int i = 0; i < 32; i++)
                 {
                     reverse_bits[1 << (31 - i)] = bits[1 << i];
                 }
-                Poly = (UInt16)((reverse_bits.Data >> 16) & 0xffff);
+                ploy = (UInt16)((reverse_bits.Data >> 16) & 0xffff);
 
 
                 crc = 0xFFFF;
@@ -55,7 +55,7 @@ namespace YE.Core.Algorithms
                     {
                         if ((crc & 0x1) != 0)
                         {
-                            crc = (UInt16)((crc >> 1) ^ Poly);
+                            crc = (UInt16)((crc >> 1) ^ ploy);
                         }
                         else
                         {
@@ -74,7 +74,7 @@ namespace YE.Core.Algorithms
                     {
                         if ((crc & 0x8000) != 0)
                         {
-                            crc = (UInt16)((crc << 1) ^ Poly);
+                            crc = (UInt16)((crc << 1) ^ ploy);
                         }
                         else
                         {
@@ -99,22 +99,22 @@ namespace YE.Core.Algorithms
         /// </code>>
         /// </example>
         /// <param name="data">数据</param>
-        /// <param name="Poly">多项式</param>
+        /// <param name="ploy">多项式</param>
         /// <param name="isReverse">true:逆序 低位在左，高位在右，false:正序 高位在左，低位在右</param>
         /// <returns>CRC结果</returns>
-        public static UInt32 GetCrc32(byte[] data, UInt32 Poly, bool isReverse)
+        public static UInt32 GetCrc32(byte[] data, UInt32 ploy, bool isReverse)
         {
             UInt32 crc = 0xFFFFFFFF;
             if (isReverse)
             {
                 /// 逆序多项式
-                BitVector32 bits = new BitVector32((Int32)Poly);
+                BitVector32 bits = new BitVector32((Int32)ploy);
                 BitVector32 reverse_bits = new BitVector32();
                 for (int i = 0; i < 32; i++)
                 {
                     reverse_bits[1 << (31 - i)] = bits[1 << i];
                 }
-                Poly = (UInt32)reverse_bits.Data;
+                ploy = (UInt32)reverse_bits.Data;
 
                 crc = 0xFFFFFFFF;
                 for (UInt32 i = 0; i < data.Length; i++)
@@ -124,7 +124,7 @@ namespace YE.Core.Algorithms
                     {
                         if ((crc & 0x1) != 0)
                         {
-                            crc = (UInt32)((crc >> 1) ^ Poly);
+                            crc = (UInt32)((crc >> 1) ^ ploy);
                         }
                         else
                         {
@@ -143,7 +143,7 @@ namespace YE.Core.Algorithms
                     {
                         if ((crc & 0x80000000) != 0)
                         {
-                            crc = (UInt32)((crc << 1) ^ Poly);
+                            crc = (UInt32)((crc << 1) ^ ploy);
                         }
                         else
                         {
@@ -163,23 +163,23 @@ namespace YE.Core.Algorithms
         /// <summary>
         /// CRC16-生成表方法
         /// </summary>
-        /// <param name="Poly">多项式</param>
+        /// <param name="poly">多项式</param>
         /// <param name="isReverse">true:逆序 低位在左，高位在右，false:正序 高位在左，低位在右</param>
         /// <returns>表</returns>
-        public static UInt16[] GenerateCRC16Table(UInt16 Poly, bool isReverse)
+        public static UInt16[] GenerateCrc16Table(UInt16 poly, bool isReverse)
         {
             UInt16[] crc_table = new UInt16[256];
 
             if (isReverse)
             {
                 /// 逆序多项式
-                BitVector32 bits = new BitVector32((Int32)Poly);
+                BitVector32 bits = new BitVector32((Int32)poly);
                 BitVector32 reverse_bits = new BitVector32();
                 for (int i = 0; i < 32; i++)
                 {
                     reverse_bits[1 << (31 - i)] = bits[1 << i];
                 }
-                Poly = (UInt16)((reverse_bits.Data >> 16) & 0xffff);
+                poly = (UInt16)((reverse_bits.Data >> 16) & 0xffff);
             }
 
             Parallel.For(0, 256, number =>
@@ -193,7 +193,7 @@ namespace YE.Core.Algorithms
                     {
                         if ((crc & 0x1) != 0)
                         {
-                            crc = (UInt16)((crc >> 1) ^ Poly);
+                            crc = (UInt16)((crc >> 1) ^ poly);
                         }
                         else
                         {
@@ -208,7 +208,7 @@ namespace YE.Core.Algorithms
                     {
                         if ((crc & 0x8000) != 0)
                         {
-                            crc = (UInt16)((crc << 1) ^ Poly);
+                            crc = (UInt16)((crc << 1) ^ poly);
                         }
                         else
                         {
@@ -226,23 +226,23 @@ namespace YE.Core.Algorithms
         /// <summary>
         /// CRC32-生成表方法
         /// </summary>
-        /// <param name="Poly">多项式</param>
+        /// <param name="poly">多项式</param>
         /// <param name="isReverse">true:逆序 低位在左，高位在右，false:正序 高位在左，低位在右</param>
         /// <returns>表</returns>
-        public static UInt32[] GenerateCRC32Table(UInt32 Poly, bool isReverse)
+        public static UInt32[] GenerateCrc32Table(UInt32 poly, bool isReverse)
         {
             UInt32[] crc_table = new UInt32[256];
 
             if (isReverse)
             {
                 /// 逆序多项式
-                BitVector32 bits = new BitVector32((Int32)Poly);
+                BitVector32 bits = new BitVector32((Int32)poly);
                 BitVector32 reverse_bits = new BitVector32();
                 for (int i = 0; i < 32; i++)
                 {
                     reverse_bits[1 << (31 - i)] = bits[1 << i];
                 }
-                Poly = (UInt32)reverse_bits.Data;
+                poly = (UInt32)reverse_bits.Data;
             }
 
             Parallel.For(0, 256, number =>
@@ -256,7 +256,7 @@ namespace YE.Core.Algorithms
                     {
                         if ((crc & 0x1) != 0)
                         {
-                            crc = (UInt32)((crc >> 1) ^ Poly);
+                            crc = (UInt32)((crc >> 1) ^ poly);
                         }
                         else
                         {
@@ -271,7 +271,7 @@ namespace YE.Core.Algorithms
                     {
                         if ((crc & 0x80000000) != 0)
                         {
-                            crc = (UInt32)((crc << 1) ^ Poly);
+                            crc = (UInt32)((crc << 1) ^ poly);
                         }
                         else
                         {
@@ -290,10 +290,10 @@ namespace YE.Core.Algorithms
         /// CRC-16校验算法[查表法]
         /// </summary>
         /// <param name="data">数据</param>
-        /// <param name="crc_table">表</param>
-        /// <param name="isReverse">true:逆序 低位在左，高位在右，false:正序 高位在左，低位在右*</param>
+        /// <param name="crcTable">表</param>
+        /// <param name="isReverse">true:逆序 低位在左，高位在右，false:正序 高位在左，低位在右</param>
         /// <returns>CRC结果</returns>
-        public static UInt16 GetCrc16_Table(byte[] data, UInt16[] crc_table, bool isReverse)
+        public static UInt16 GetCrc16WithTable(byte[] data, UInt16[] crcTable, bool isReverse)
         {
             UInt16 crc = 0xFFFF;
 
@@ -301,7 +301,7 @@ namespace YE.Core.Algorithms
             {
                 for (UInt16 i = 0; i < data.Length; i++)
                 {
-                    crc = (UInt16)((crc >> 8) ^ crc_table[(crc ^ data[i]) & 0xFF]);
+                    crc = (UInt16)((crc >> 8) ^ crcTable[(crc ^ data[i]) & 0xFF]);
                 }
             }
             else
@@ -309,7 +309,7 @@ namespace YE.Core.Algorithms
                 crc ^= crc;
                 for (UInt16 i = 0; i < data.Length; i++)
                 {
-                    crc = (UInt16)((crc << 8) ^ crc_table[(crc >> 8 ^ data[i]) & 0xFF]);
+                    crc = (UInt16)((crc << 8) ^ crcTable[(crc >> 8 ^ data[i]) & 0xFF]);
                 }
             }
 
@@ -320,10 +320,10 @@ namespace YE.Core.Algorithms
         /// CRC-32校验算法[查表法]
         /// </summary>
         /// <param name="data">数据</param>
-        /// <param name="crc_table">表</param>
-        /// <param name="isReverse">true:逆序 低位在左，高位在右，false:正序 高位在左，低位在右*</param>
+        /// <param name="crcTable">表</param>
+        /// <param name="isReverse">true:逆序 低位在左，高位在右，false:正序 高位在左，低位在右</param>
         /// <returns>CRC结果</returns>
-        public static UInt32 GetCrc32_Table(byte[] data, UInt32[] crc_table, bool isReverse)
+        public static UInt32 GetCrc32WithTable(byte[] data, UInt32[] crcTable, bool isReverse)
         {
             UInt32 crc = 0xFFFFFFFF;
 
@@ -331,7 +331,7 @@ namespace YE.Core.Algorithms
             {
                 for (UInt16 i = 0; i < data.Length; i++)
                 {
-                    crc = (UInt32)((crc >> 8) ^ crc_table[(crc ^ data[i]) & 0xFF]);
+                    crc = (UInt32)((crc >> 8) ^ crcTable[(crc ^ data[i]) & 0xFF]);
                 }
             }
             else
@@ -339,7 +339,7 @@ namespace YE.Core.Algorithms
                 crc ^= crc;
                 for (UInt16 i = 0; i < data.Length; i++)
                 {
-                    crc = (UInt32)((crc << 8) ^ crc_table[(crc >> 24 ^ data[i]) & 0xFF]);
+                    crc = (UInt32)((crc << 8) ^ crcTable[(crc >> 24 ^ data[i]) & 0xFF]);
                 }
             }
 

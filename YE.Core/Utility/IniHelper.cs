@@ -65,9 +65,9 @@ namespace YE.Core.Utility
         /// <param name="section">节</param>
         /// <param name="key">键</param>
         /// <param name="filePath">ini文件</param>
-        /// <param name="def">默认值</param>
+        /// <param name="defaultValue">默认值</param>
         /// <returns></returns>
-        public static T ReadValue<T>(string section, string key, string filePath, T def = default(T))
+        public static T ReadValue<T>(string section, string key, string filePath, T defaultValue = default(T))
         {
             int count = 512;
 
@@ -107,7 +107,7 @@ namespace YE.Core.Utility
                 return (T)(object)sb.ToString();
             }
 
-            return def;
+            return defaultValue;
         }
     }
 }

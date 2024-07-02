@@ -9,7 +9,6 @@ namespace YE.Core.Extension
         /// <summary>
         /// 获取Enum类型的Description信息
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="value"></param>
         /// <returns></returns>
         public static string GetDescription(this Enum value)
