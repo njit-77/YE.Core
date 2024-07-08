@@ -1,25 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFrameworks>net45;net462;net472;netstandard2.0;netstandard2.1;net5.0;net5.0-windows;net6.0;net6.0-windows;net7.0;net7.0-windows;net8.0;net8.0-windows;</TargetFrameworks>
-	<LangVersion>latest</LangVersion>
-    <Company>YE</Company>
-    <Authors>$(Company)</Authors>
-	<PackageReadmeFile>README.md</PackageReadmeFile>
-	<AssemblyTitle>YE.Core</AssemblyTitle>
-	<VersionPrefix>1.0</VersionPrefix>
-	<VersionSuffix>$([System.DateTime]::Now.ToString(`yyyy.MMdd`))</VersionSuffix>
-	<Version>$(VersionPrefix).$(VersionSuffix)</Version>
-	<FileVersion>$(Version)</FileVersion>
-	<AssemblyVersion>$(Version)</AssemblyVersion>
-	<PackageVersion>$(Version)</PackageVersion>
-	<Copyright>Copyright © 2020-$([System.DateTime]::Now.ToString(`yyyy`)) njit-77. All rights reserved.</Copyright>
-	<OutputPath>..\bin</OutputPath>
-	<Description>YE.Core</Description>
-	<PackageReleaseNotes>fix:EnumExtension.GetDescription错误</PackageReleaseNotes>
-	<PackageLicenseExpression>MIT</PackageLicenseExpression>
-  </PropertyGroup>
-
+	<PropertyGroup>
+		<DebugType>none</DebugType>
+		
+		<AssemblyTitle>YE.Core</AssemblyTitle>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReleaseNotes>fix:EnumExtension.GetDescription错误</PackageReleaseNotes>
+	</PropertyGroup>
   <ItemGroup>
     <None Include="..\LICENSE">
       <Pack>True</Pack>
