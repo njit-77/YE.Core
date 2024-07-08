@@ -3,8 +3,7 @@
 		<DebugType>none</DebugType>
 		
 		<AssemblyTitle>YE.Core</AssemblyTitle>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+
 		<PackageReleaseNotes>fix:EnumExtension.GetDescription错误</PackageReleaseNotes>
 	</PropertyGroup>
   <ItemGroup>

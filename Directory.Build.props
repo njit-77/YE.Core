@@ -3,6 +3,11 @@
 		<Copyright>Copyright © 2014 njit-77, Inc. All rights reserved.</Copyright>
 		<Authors>njit-77</Authors>
 		<Owners>njit-77</Owners>
+
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageProjectUrl>https://github.com/njit-77/YE.Core</PackageProjectUrl>
+		
 		<Description>YE.Core是一个基础类库，包括开发常用功能。</Description>
 	</PropertyGroup>
 	
