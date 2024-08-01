@@ -4,7 +4,7 @@
 		
 		<AssemblyTitle>YE.Core</AssemblyTitle>
 
-		<PackageReleaseNotes>fix:EnumExtension.GetDescription错误</PackageReleaseNotes>
+		<PackageReleaseNotes>更新ReadMe.md</PackageReleaseNotes>
 	</PropertyGroup>
   <ItemGroup>
     <None Include="..\LICENSE">
