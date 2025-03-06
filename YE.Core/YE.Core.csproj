@@ -1,16 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<DebugType>none</DebugType>
-		
-		<AssemblyTitle>YE.Core</AssemblyTitle>
-
-		<PackageReleaseNotes>更新ReadMe.md</PackageReleaseNotes>
+	  <DebugType>none</DebugType>
+	  <AssemblyTitle>YE.Core</AssemblyTitle>
 	</PropertyGroup>
   <ItemGroup>
-    <None Include="..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
     <None Include="..\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
