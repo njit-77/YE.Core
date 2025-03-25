@@ -2,6 +2,7 @@
 	<PropertyGroup>
 	  <DebugType>none</DebugType>
 	  <AssemblyTitle>YE.Core</AssemblyTitle>
+	  <PackageReleaseNotes>1、移除netstandard2.0、netstandard2.1两个版本；2、改用BlockingCollection实现ProducerConsumer类</PackageReleaseNotes>
 	</PropertyGroup>
   <ItemGroup>
     <None Include="..\README.md">

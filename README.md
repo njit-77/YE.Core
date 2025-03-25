@@ -173,12 +173,17 @@ public static T ReadValue<T>(string section, string key, string filePath, T defa
 ```c#
 var producerConsumer = new ProducerConsumer<int>(t =>
 {
-    Task.Run(() =>
-    {
-        Console.WriteLine($"Hello YE.Core, This is from {t}");
-    });
+    Console.WriteLine($"Hello YE.Core, This is from {t}");
+    Thread.Sleep(200);
 });
 
-producerConsumer.Add(10);
+for (int i = 0; i < 10; i++)
+{
+    producerConsumer.AddT(i);    
+}
+Thread.Sleep(1000);
+producerConsumer.Stop();
+Thread.Sleep(3000);
+Console.WriteLine("Done.");
 ```
 

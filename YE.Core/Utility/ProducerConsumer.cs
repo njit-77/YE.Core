@@ -2,7 +2,7 @@
 using System.Collections.Concurrent;
 using System.Threading;
 
-namespace YE.Core
+namespace YE.Core.Utility
 {
     /// <summary>
     /// 简单生产者-消费者模式
@@ -11,55 +11,33 @@ namespace YE.Core
     public class ProducerConsumer<T> where T : new()
     {
         /// <summary>队列</summary>
-        private ConcurrentQueue<T> _queue;
-
-        /// <summary>信号量</summary>
-        private readonly EventWaitHandle _wait;
+        private BlockingCollection<T> _queue = new();
 
         /// <summary>消费者待执行任务</summary>
         private readonly Action<T> _action;
 
         /// <summary>后台线程</summary>
-        private readonly System.Threading.Thread t_work;
+        private readonly System.Threading.Thread _work;
 
+        /// <summary>任务取消信号</summary>
+        private readonly CancellationTokenSource _stopTokenSource = new();
 
         public ProducerConsumer(Action<T> action)
         {
-            _queue = new ConcurrentQueue<T>();
-
-            _wait = new AutoResetEvent(false);
-
             _action = action;
 
-            t_work = new Thread(DoWork)
+            _work = new Thread(DoWork)
             {
                 IsBackground = true
             };
-            t_work.Start();
+            _work.Start();
         }
 
         private void DoWork()
         {
-            while (true)
+            while (!_stopTokenSource.Token.IsCancellationRequested)
             {
-                bool is_get_data = false;
-                T item = default;
-
-                if (_queue.Count > 0)
-                {
-                    is_get_data = _queue.TryDequeue(out item);
-                }
-
-                if (is_get_data && item == null)
-                {
-                    /// 退出操作
-                    return;
-                }
-                if (!is_get_data)
-                {
-                    _wait.WaitOne();
-                }
-                else
+                if (_queue.TryTake(out var item))
                 {
                     _action(item);
                 }
@@ -68,8 +46,13 @@ namespace YE.Core
 
         public void AddT(T item)
         {
-            _queue.Enqueue(item);
-            _wait.Set();
+            _queue.Add(item);
         }
+
+        public void Stop()
+        {
+            _stopTokenSource.Cancel();
+        }
+
     }
 }
