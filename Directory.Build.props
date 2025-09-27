@@ -12,16 +12,14 @@
 	</PropertyGroup>
 	
 	<PropertyGroup>
-		<TargetFrameworks>net452;net462;net472;net5.0;net6.0;net7.0;net8.0;</TargetFrameworks>
-		<CheckEolTargetFramework>false</CheckEolTargetFramework>
+		<TargetFrameworks>net472;net8.0;</TargetFrameworks>
 		<LangVersion>latest</LangVersion>
-		<VersionPrefix>1.1</VersionPrefix>
-		<VersionSuffix>$([System.DateTime]::Now.ToString(`yyyy.MMdd`))</VersionSuffix>
-		<Version>$(VersionPrefix).$(VersionSuffix)</Version>
 		
-		<FileVersion>$(Version)</FileVersion>
+		<Version>1.1.$([System.DateTime]::Now.ToString(`yyyy.MMdd`))</Version>
+		
 		<AssemblyVersion>$(Version)</AssemblyVersion>
-		<PackageVersion>$(Version)</PackageVersion>	
+		<PackageVersion>$(Version)</PackageVersion>
+		<InformationalVersion>$(Version)</InformationalVersion>
 		
 		<BaseOutputPath>..\bin\</BaseOutputPath>
 		<OutputPath>$(BaseOutputPath)</OutputPath>
